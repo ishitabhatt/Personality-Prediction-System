@@ -3,7 +3,6 @@
 
 ## Let's get started
 [![](https://img.shields.io/badge/author-@Ishitabhatt-blue.svg?style=flat)](https://www.linkedin.com/in/bhatt-ishita-599bb1196)
-
 The system will predict one's personality and their traits through basic survey.This system will help the human resource to select right candidate for desired job profile, which in turn provide expert workforce for the organization.
 
 ### Applications in psychology:
@@ -15,7 +14,7 @@ Factor analysis has been used in the study of human intelligence and human perso
 - Provides support for theories that would be difficult to prove otherwise
 
 ## Algorithm
-python
+```python
 Refine the Data
 Prepare the Data
 Choose the Factor
@@ -27,22 +26,22 @@ Choose the Factor
   rotation of factor loadings
   provide appropriate no. of factors
   
-
+```
 
 ## Now understand and implement the code 
 > Import all libraries which we needed to perform this `python code`
-python
+```python
 #Librerias
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt
-
+```
 Make Dataframe using `Pandas` and shaped it 
-python
+```python
 #Data
 df = pd.read_csv("responses.csv")
 df.shape
-
+```
 > Out: (1010, 15)
 
 In `response.csv` [1010 rows, 150 rows] 
@@ -67,10 +66,10 @@ DEMOGRAPHICS (10 ) 140:150
 We will take only: PERSONALITY TRAITS, VIEWS ON LIFE & OPINIONS (57) `76:133`
 
 
-python
+```python
 df = df.iloc[:, 76:133]
 df.head(5)
-
+```
 > Out:
 
 <table border="1" class="dataframe">
@@ -229,7 +228,7 @@ df.head(5)
 
 # 1. Prepare the Data
 
-python
+```python
 #Drop NAs
 df = df.dropna()
 #...............................................................................................
@@ -238,7 +237,7 @@ from sklearn.preprocessing import LabelEncoder
 
 df = df.apply(LabelEncoder().fit_transform)
 df
-
+```
 
 `dropna()` method will remove Null value from dataframe.
 
@@ -565,9 +564,9 @@ Here, We have used `One hot encoding`.
 
 ## 2. Choose the Factors
 
-python
+```python
 pip install factor_analyzer 
-
+```
     Requirement already satisfied: factor_analyzer in c:\users\dell\anaconda3\lib\site-packages (0.3.2)
     Requirement already satisfied: pandas in c:\users\dell\anaconda3\lib\site-packages (from factor_analyzer) (0.25.1)
     Requirement already satisfied: scipy in c:\users\dell\anaconda3\lib\site-packages (from factor_analyzer) (1.3.1)
@@ -603,7 +602,7 @@ Here, Our data is uncorrelated so we have used Orthogonal's `varimax` rotation m
 Now, We determine no. of factor using Scree plot 
 > we can use also eigenvalue to determine no. of factor but that is more complex and by Scree plot its is to find.
 
-python
+```python
 #Try the model with all the variables 
 from factor_analyzer import FactorAnalyzer         # pip install factor_analyzer 
 fa = FactorAnalyzer(rotation="varimax")
@@ -621,7 +620,7 @@ plt.xlabel('Factors')
 plt.ylabel('Eigenvalue')
 plt.grid()
 plt.show()
-
+```
 > Out:
 
 ![png](Scree-plot.png)
@@ -633,7 +632,7 @@ As you can see the most usefull factors for explain the data are between 5-6 unt
 
 We will fit the model with 5 Factors:
 
-python
+```python
 #Factor analysis with 5 fators
 fa = FactorAnalyzer(5, rotation="varimax")
 fa.fit(df)
@@ -641,7 +640,7 @@ AF = fa.loadings_
 AF = pd.DataFrame(AF)
 AF.index = df.columns
 AF
-
+```
 > Out:
 <div>
 <table border="1" class="dataframe">
@@ -1116,7 +1115,7 @@ AF
 </table>
 </div>
 
-python
+```python
 #Get Top variables for each Factor 
 F = AF.unstack()
 F = pd.DataFrame(F).reset_index()
@@ -1125,7 +1124,7 @@ F = F.sort_values(by="level_0")
 F.columns=["FACTOR","Variable","Varianza_Explica"]
 F = F.reset_index().drop(["index"],axis=1)
 F
-
+```
 > Out:
 <div>
 <table border="1" class="dataframe">
@@ -1293,11 +1292,11 @@ F
 </div>
 
 
-python
+```python
 #Show the Top for each Factor 
 F = F.pivot(columns='FACTOR')["Variable"]
 F.apply(lambda x: pd.Series(x.dropna().to_numpy()))
-
+```
 > Out:
 <div>
 <table border="1" class="dataframe">
@@ -1398,3 +1397,4 @@ What do you think?
 # Thank you      
 ![png](Thank-you.png)                                       
 > I appreciate especially your `Heart`
+
