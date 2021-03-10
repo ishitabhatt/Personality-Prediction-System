@@ -2,7 +2,7 @@
 > From the given database `response.csv` Find out the personality traits using this personality prediction project. 
 
 ## Let's get started
-[![](https://img.shields.io/badge/author-@Ishita bhatt-blue.svg?style=flat)](https://www.linkedin.com/in/bhatt-ishita-599bb1196)
+[![](https://img.shields.io/badge/author-@Ishitabhatt-blue.svg?style=flat)](https://www.linkedin.com/in/bhatt-ishita-599bb1196)
 
 The system will predict one's personality and their traits through basic survey.This system will help the human resource to select right candidate for desired job profile, which in turn provide expert workforce for the organization.
 
